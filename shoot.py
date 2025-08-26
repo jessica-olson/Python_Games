@@ -1,6 +1,7 @@
 from random import randint
 
 apple = Actor("apple")
+score = 0
 
 def draw():
     screen.clear()
@@ -11,11 +12,13 @@ def place_apple():
     apple.y = randint(10, 600)
 
 def on_mouse_down(pos):
+    global score
     if apple.collidepoint(pos):
-        print("Good shot!")
+        score += 1
+        print("Good shot! Current score: " + str(score))
         place_apple()
     else:
-        print("You missed. Game over, Man!")
+        print("You missed. Game over, Man! FINAL SCORE: " + str(score))
         quit()
 
 place_apple()
